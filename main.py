@@ -27,7 +27,7 @@ def rename_files():
         
         # All files that we don't want to rename will be here
         data['renamed_files'].extend(main_files)
-        new_files = [f for f in os.listdir(directory) if f not in data['renamed_files']]
+        new_files = [f for f in os.listdir(directory) if f not in data['renamed_files'] and not f.startswith(('.', 'README'))]
         renamed_files = []
 
         # Renaming files
@@ -50,7 +50,7 @@ def rename_files():
 
 def len_digits():
     # Take the number of files to rename and pass to string and know how many digits will have
-    return len(str(len([f for f in os.listdir(directory)if not f.endswith(('.py', 'data.json', '.git', '.gitattributes', 'README.md'))])))
+    return len(str(len([f for f in os.listdir(directory)if not f.endswith(('.py', 'data.json') and not f.startswith(('.', 'README')))])))
 
 def update_data(data):
     # Save new data in JSON file
